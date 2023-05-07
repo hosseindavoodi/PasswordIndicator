@@ -1,38 +1,44 @@
 import {  useMemo } from 'react'
+import { 
+  passwordIndicator, 
+  hasMinCharacters, 
+  hasNumber, 
+  hasUppercaseLetter,
+  hasLowercaseLetter
+   } from '@/utils/passwordIndicator'
 import clsx from 'clsx'
 
-const PasswordProgressBar = (( ) => {
+const PasswordProgressBar = ({passwordInputValue}: any ) => {
+
+  const passwordScore = passwordIndicator(passwordInputValue)
  
   const progressBarItems = [
     {
       id: 1,
-      item: true,
+      item: hasMinCharacters(passwordInputValue),
       text: 'Has to be at least 8 characters long'
     },
-    { id: 2, item: true, text: 'Has at least 1 number' },
+    { id: 2, item: hasNumber(passwordInputValue), text: 'Has at least 1 number' },
     {
       id: 3,
-      item: true,
-      text: 'Has at least 1 character'
+      item: hasUppercaseLetter(passwordInputValue),
+      text: 'Has at least 1 uppercase letter'
     },
     {
       id: 4,
-      item: false
-    },
-    {
-      id: 5,
-      item: false
+      item: hasLowercaseLetter(passwordInputValue),
+      text: 'Hast at least 1 lowercase letter'
     }
   ]
 
-  const count = progressBarItems.filter(value => value.item).length
+  console.log(passwordScore)
 
-  const none = 'Weak password'
+  const none = 'Empty password'
   const basic = 'Weak password'
   const mid = 'Weak password'
   const sufficient = 'Sufficient password'
   const strong = 'Strong password'
-  const allStar = 'Strong password'
+  const allStar = 'Very Strong password'
 
   const { barText, textColor, barWidth, bgColor } = useMemo(() => {
     let bgColor
@@ -40,38 +46,53 @@ const PasswordProgressBar = (( ) => {
     let barWidth
     let barText
 
-    switch (count) {
+    switch (passwordScore) {
       case 0:
         bgColor = 'bg-slate-300'
         textColor = 'text-slate-400'
-        barWidth = 'w-10'
+        barWidth = 'w-6'
         barText = none
         break
       case 1:
         bgColor = 'bg-slate-300'
         textColor = 'text-slate-400'
-        barWidth = 'w-1/5'
+        barWidth = 'w-1/6'
         barText = basic
         break
       case 2:
         bgColor = 'bg-slate-300'
         textColor = 'text-slate-400'
-        barWidth = 'w-1/3'
+        barWidth = 'w-1/4'
         barText = mid
         break
       case 3:
         bgColor = 'bg-orange-500'
         textColor = 'text-orange-500'
-        barWidth = 'w-2/3'
+        barWidth = 'w-1/2'
         barText = sufficient
         break
       case 4:
-        bgColor = 'bg-green-500'
-        textColor = 'text-green-500'
-        barWidth = 'w-5/6'
-        barText = strong
+        bgColor = 'bg-orange-500'
+        textColor = 'text-orange-500'
+        barWidth = 'w-8/12'
+        barText = sufficient
         break
       case 5:
+        bgColor = 'bg-green-500'
+        textColor = 'text-green-500'
+        barWidth = 'w-9/12'
+        barText = sufficient
+      case 6:
+        bgColor = 'bg-green-500'
+        textColor = 'text-green-500'
+        barWidth = 'w-10/12'
+        barText = strong
+      case 7:
+        bgColor = 'bg-green-500'
+        textColor = 'text-green-500'
+        barWidth = 'w-11/12'
+        barText = strong
+      case 8:
         bgColor = 'bg-green-500'
         textColor = 'text-green-500'
         barWidth = 'w-full'
@@ -79,7 +100,7 @@ const PasswordProgressBar = (( ) => {
         break
     }
     return { barText, textColor, barWidth, bgColor }
-  }, [count, none, basic, mid, sufficient, strong, allStar])
+  }, [passwordScore, none, basic, mid, sufficient, strong, allStar])
 
   return (
     <div className="col-span-1 xs:col-span-2">
@@ -104,6 +125,6 @@ const PasswordProgressBar = (( ) => {
       </ul>
     </div>
   )
-})
+}
 
 export default PasswordProgressBar
