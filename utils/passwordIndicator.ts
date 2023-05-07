@@ -28,7 +28,7 @@ export const passwordIndicator = (param: string) => {
 
 
   export const hasMinCharacters = (param: string) => {
-    return param && param.length > 7
+    return param && param.length > 5
   }
 
   export const hasNumber = (param: string) => {
@@ -39,6 +39,4 @@ export const passwordIndicator = (param: string) => {
     return /[A-Z]/.test(param)
   }
 
-  export const hasLowercaseLetter = (param: string) => {
-    return /[a-z]/.test(param)
-  }
+  

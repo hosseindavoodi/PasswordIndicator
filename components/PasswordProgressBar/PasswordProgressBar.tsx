@@ -3,8 +3,7 @@ import {
   passwordIndicator, 
   hasMinCharacters, 
   hasNumber, 
-  hasUppercaseLetter,
-  hasLowercaseLetter
+  hasUppercaseLetter
    } from '@/utils/passwordIndicator'
 import clsx from 'clsx'
 
@@ -16,18 +15,13 @@ const PasswordProgressBar = ({passwordInputValue}: any ) => {
     {
       id: 1,
       item: hasMinCharacters(passwordInputValue),
-      text: 'Has to be at least 8 characters long'
+      text: 'Has to be at least 5 characters long'
     },
     { id: 2, item: hasNumber(passwordInputValue), text: 'Has at least 1 number' },
     {
       id: 3,
       item: hasUppercaseLetter(passwordInputValue),
       text: 'Has at least 1 uppercase letter'
-    },
-    {
-      id: 4,
-      item: hasLowercaseLetter(passwordInputValue),
-      text: 'Hast at least 1 lowercase letter'
     }
   ]
 
@@ -97,6 +91,11 @@ const PasswordProgressBar = ({passwordInputValue}: any ) => {
         textColor = 'text-green-500'
         barWidth = 'w-full'
         barText = allStar
+     case 9:
+          bgColor = 'bg-green-500'
+          textColor = 'text-green-500'
+          barWidth = 'w-full'
+          barText = allStar 
         break
     }
     return { barText, textColor, barWidth, bgColor }

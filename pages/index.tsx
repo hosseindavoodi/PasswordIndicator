@@ -1,25 +1,23 @@
 import { useForm } from 'react-hook-form';
+import { passwordIndicator } from '@/utils/passwordIndicator';
 import PasswordProgressBar from '@/components/PasswordProgressBar/PasswordProgressBar';
-import clsx from 'clsx';
+
 
 export default function Home() {
+
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = (data: any) => console.log(data);
-
+  
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
-            <div className="col-span-2">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <input type='password' defaultValue={''} {...register("password")} className='w-full border border-slate-200 bg-white p-3 mb-8 rounded-md !ring-transparent placeholder:text-slate-200 ' />
-              {errors.exampleRequired && <span>This field is required</span>}
-
+    <div className="flex flex-col items-center p-24 w-1/2 sm:w-full">
+            <form onSubmit={handleSubmit(onSubmit)} className='w-full sm:w'>
+              <div className='mb-8 '>
+                  <input type='password' {...register("password", { required: true })} className='w-full border border-slate-200 bg-white p-3 rounded-md !ring-transparent placeholder:text-slate-200 ' />
+                  {errors.password && <span>This field is required</span>}
+              </div>
               <PasswordProgressBar passwordInputValue={watch('password')} />
-              <button type="submit" className={clsx('bg-black text-white rounded-md px-4 py-2 disabled:bg-slate-400')}> submit</button>
-
+              <button disabled={passwordIndicator(watch('password')) > 5 ? false : true} type="submit" className="bg-black text-white rounded-md px-4 py-2 disabled:disabled:bg-slate-400"> submit</button>
             </form>
-              
-            </div>
-          
     </div>
   )
 }
