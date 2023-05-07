@@ -68,30 +68,34 @@ const PasswordProgressBar = ({passwordInputValue}: any ) => {
       case 4:
         bgColor = 'bg-orange-500'
         textColor = 'text-orange-500'
-        barWidth = 'w-8/12'
+        barWidth = 'w-7/12'
         barText = sufficient
         break
       case 5:
         bgColor = 'bg-green-500'
         textColor = 'text-green-500'
-        barWidth = 'w-9/12'
+        barWidth = 'w-8/12'
         barText = sufficient
+        break
       case 6:
+        bgColor = 'bg-green-500'
+        textColor = 'text-green-500'
+        barWidth = 'w-8/12'
+        barText = strong
+        break
+      case 7:
         bgColor = 'bg-green-500'
         textColor = 'text-green-500'
         barWidth = 'w-10/12'
         barText = strong
-      case 7:
-        bgColor = 'bg-green-500'
-        textColor = 'text-green-500'
-        barWidth = 'w-11/12'
-        barText = strong
+        break
       case 8:
         bgColor = 'bg-green-500'
         textColor = 'text-green-500'
-        barWidth = 'w-full'
+        barWidth = 'w-11/12'
         barText = allStar
-     case 9:
+        break
+      case 9:
           bgColor = 'bg-green-500'
           textColor = 'text-green-500'
           barWidth = 'w-full'
