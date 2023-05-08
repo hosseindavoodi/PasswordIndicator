@@ -6,7 +6,11 @@ export const passwordIndicator = (param: string) => {
         passwordCheck += 1
       }
     })
-  
+      const str = param && param.replace(/\s+/g, '_')
+    if (/(\S)(\1{3,})/g.test(str)) {
+      passwordCheck -= 1
+    }
+    
     if (passwordCheck > 2 && param.length > 5) {
       passwordCheck += 1
     }
