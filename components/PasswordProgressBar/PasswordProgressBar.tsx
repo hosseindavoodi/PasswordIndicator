@@ -25,7 +25,6 @@ const PasswordProgressBar = ({passwordInputValue}: any ) => {
     }
   ]
 
-  console.log(passwordScore)
 
   const none = 'Empty password'
   const basic = 'Weak password'
@@ -42,19 +41,19 @@ const PasswordProgressBar = ({passwordInputValue}: any ) => {
 
     switch (passwordScore) {
       case 0:
-        bgColor = 'bg-slate-300'
+        bgColor = 'bg-slate-400'
         textColor = 'text-slate-400'
         barWidth = 'w-6'
         barText = none
         break
       case 1:
-        bgColor = 'bg-slate-300'
+        bgColor = 'bg-slate-400'
         textColor = 'text-slate-400'
         barWidth = 'w-1/6'
         barText = basic
         break
       case 2:
-        bgColor = 'bg-slate-300'
+        bgColor = 'bg-slate-400'
         textColor = 'text-slate-400'
         barWidth = 'w-1/4'
         barText = mid
@@ -119,7 +118,7 @@ const PasswordProgressBar = ({passwordInputValue}: any ) => {
             key={items.id}
             className={clsx(
               'flex mb-4 items-center',
-              items.item ? 'text-green-500' : 'text-slate-400'
+              items.item ? 'text-green-500' : 'text-slate-600'
             )}
           >
             <p>{items.text}</p>
